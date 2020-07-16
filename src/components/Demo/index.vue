@@ -5,8 +5,18 @@
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
+
     export default {
-        name: "index"
+        name: "index",
+        methods: {
+            ...mapMutations([
+                'changeNavItem'
+            ])
+        },
+        created() {
+            this.changeNavItem(1);
+        }
     }
 </script>
 

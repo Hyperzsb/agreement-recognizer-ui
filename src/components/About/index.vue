@@ -1,11 +1,11 @@
 <template>
     <div>
-        <h1>Info Page</h1>
+        <h1>About Page</h1>
     </div>
 </template>
 
 <script>
-    import {mapMutations} from 'vuex'
+    import {mapMutations} from "vuex";
 
     export default {
         name: "index",
@@ -15,7 +15,7 @@
             ])
         },
         created() {
-            this.changeNavItem(0);
+            this.changeNavItem(2);
         }
     }
 </script>

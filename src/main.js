@@ -6,7 +6,8 @@ import './assets/custom.scss'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import App from './App'
-import index from './router'
+import router from './router'
+import store from './store'
 
 Vue.use(VueAxios, axios);
 // Install BootstrapVue
@@ -17,6 +18,7 @@ Vue.use(IconsPlugin);
 Vue.config.productionTip = false
 
 new Vue({
-    router: index,
+    router,
+    store,
     render: h => h(App),
 }).$mount('#app')

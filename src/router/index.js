@@ -3,9 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-const Info = () => import('../components/Info');
-const Demo = () => import('../components/Demo');
-
+const Info = () => import('@/components/Info');
+const Demo = () => import('@/components/Demo');
+const About = () => import('@/components/About')
 
 const index = new VueRouter({
     routes: [
@@ -18,6 +18,9 @@ const index = new VueRouter({
         }, {
             path: '/demo',
             component: Demo
+        }, {
+            path: '/about',
+            component: About
         }
     ]
 });
