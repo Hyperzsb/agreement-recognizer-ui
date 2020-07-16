@@ -1,10 +1,10 @@
 <template>
     <b-container tag="footer" fluid class="text-center bg-gray-200 border-top-3">
-        <b-row class="pt-3 pb-1">
+        <b-row class="pt-5 pb-3">
             <b-col cols="12" class="p-3">
                 <b-row class="mt-3 mb-3">
                     <b-col offset-sm="3" offset="2" cols="4">
-                        <div class="pb-1 pt-1 text-left font-weight-bolder font-size-101">
+                        <div class="pb-1 pt-1 text-left text-info font-weight-bolder font-size-101">
                             相关链接
                         </div>
                         <div class="pt-1 pl-3 text-left">
@@ -18,7 +18,7 @@
                         </div>
                     </b-col>
                     <b-col cols="4" sm="3">
-                        <div class="pb-1 pt-1 text-left font-weight-bolder font-size-101">
+                        <div class="pb-1 pt-1 text-left text-info font-weight-bolder font-size-101">
                             联系我们
                         </div>
                         <div class="pt-1 pl-3 text-left">
@@ -39,9 +39,8 @@
                             <b-link href="https://cn.vuejs.org/" class="custom-link">
                                 Vue.js
                             </b-link>
-                            &nbsp;and
                             <br/>
-                            Currently v{{version}}. Code licensed&nbsp;
+                            Currently <b>v{{version}}</b> Code licensed&nbsp;
                             <b-link href="https://www.mit-license.org/" class="custom-link">
                                 MIT
                             </b-link>
@@ -66,23 +65,16 @@
 
 <style lang="scss" scoped>
 
-    // Import custom SASS variable overrides, or alternatively
-    // define your variable overrides here instead
-    @import '../assets/custom';
-    // Import Bootstrap and BootstrapVue source SCSS files
-    @import '../../node_modules/bootstrap/scss/bootstrap';
-    @import '../../node_modules/bootstrap-vue/src/index';
-
     .border-top-3 {
-        border-top: $gray-300 3px solid;
+        border-top: #dee2e6 3px solid;
     }
 
     .border-top-1 {
-        border-top: $gray-400 1px solid;
+        border-top: #ced4da 1px solid;
     }
 
     .bg-gray-200 {
-        background-color: $gray-200;
+        background-color: #e9ecef;
     }
 
     .font-size-101 {
@@ -94,17 +86,17 @@
     }
 
     .custom-link {
-        @extend .font-weight-bold;
         @extend .font-size-09;
 
-        color: $dark;
+        font-weight: bold;
+        color: #343a40;
 
         &:hover {
-            color: $primary;
+            color: #007bff;
         }
 
         &:active {
-            color: $primary;
+            color: #007bff;
         }
     }
 
