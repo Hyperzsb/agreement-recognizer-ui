@@ -1,24 +1,11 @@
-# agreement-recognizer-ui
+# Agreement Recognizer UI
 
-## Project setup
-```
-npm install
-```
+**Vue UI for Agreement Recognizer Project's Presentation.**
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Currently includes:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Overview Page
+- Demo Page
+- About Page
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+***Continually updating...***
