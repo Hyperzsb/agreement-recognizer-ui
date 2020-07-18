@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "8"
+
+install:
+  - npm install
+
+script:
+  - npm run build
+
+before_deploy:
+  - tar -czvf dist.tar dist
+
+deploy:
+  provider: releases
+  api_key: ${GH_TOKEN}
+  file: dist.tar
+  skip_cleanup: true
+  on:
+    tags: true
