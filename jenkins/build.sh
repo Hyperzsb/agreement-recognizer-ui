@@ -1,11 +1,20 @@
 #!/bin/bash
-echo " - Executing build.sh..."
+# Start
+echo "# Executing build.sh..."
 work_directory="/home/admin/github/agreement-recognizer-ui"
-echo "- Work directory is: $work_directory"
-echo "- Start building..."
+echo "# - Work directory is: $work_directory"
+# Build
+echo "# - Start building..."
 if docker run --rm -v $work_directory:/usr/src/app -w /usr/src/app node:latest sh -c "npm install && npm run build"; then
-  echo " - Building completed!"
+  echo "# - - Building succeeded!"
+  exit_code=0
 else
-  echo " - Building failed!"
+  echo "# - - Building failed!"
+  exit_code=1
 fi
-echo " - Exit build.sh"
+# Post build check
+echo "# - Files in \"$work_directory/dist\" are:"
+ls  $work_directory/dist
+# Exit
+echo "# Exit build.sh"
+exit $exit_code
