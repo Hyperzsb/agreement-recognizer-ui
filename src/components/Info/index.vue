@@ -50,6 +50,7 @@
 </template>
 
 <script>
+
     import {mapMutations} from 'vuex'
 
     export default {
@@ -84,6 +85,7 @@
             this.changeNavItem(0);
         }
     }
+
 </script>
 
 <style lang="scss" scoped>

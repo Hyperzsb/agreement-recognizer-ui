@@ -53,6 +53,7 @@
 </template>
 
 <script>
+
     export default {
         name: "FooterBar",
         computed: {
@@ -61,6 +62,7 @@
             }
         }
     }
+
 </script>
 
 <style lang="scss" scoped>

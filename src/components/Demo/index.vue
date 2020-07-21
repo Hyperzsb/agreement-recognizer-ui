@@ -96,6 +96,7 @@
 </template>
 
 <script>
+
     import Chart from 'chart.js'
 
     import {mapMutations} from 'vuex'
@@ -254,6 +255,7 @@
             });
         }
     }
+
 </script>
 
 <style lang="scss" scoped>
