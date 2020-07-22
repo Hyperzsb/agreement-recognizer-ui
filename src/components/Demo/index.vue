@@ -1,6 +1,6 @@
 <template>
-    <b-container tag="section" fluid>
-        <b-row class="p-3 p-md-5 mb-0 mb-md-4">
+    <b-container tag="section" fluid class="pb-3 pb-md-4">
+        <b-row class="p-3 p-md-5">
             <b-col cols="12" offset-md="1" md="6" class="mr-0 mr-md-3">
                 <b-row class="pt-4 pt-md-3  pb-4 pb-md-0">
                     <b-col cols="12">
@@ -28,7 +28,7 @@
                                 <p>Size: <b>{{ trainDatasetSize }}</b></p>
                                 <p>Total Records: <b>{{ trainDatasetTotalRecords }}</b></p>
                             </b-card-body>
-                            <b-card-body class="custom-card-body">
+                            <b-card-body class="custom-card">
                                 <canvas id="pie-chart"></canvas>
                             </b-card-body>
                         </b-card>
@@ -42,7 +42,7 @@
                                 <p>Train Echos: <b>{{ trainEchos }}</b></p>
                                 <p>Train Accuracy: <b>{{ trainAccuracy }}</b></p>
                             </b-card-body>
-                            <b-card-body class="custom-card-body">
+                            <b-card-body class="custom-card">
                                 <canvas id="line-chart"></canvas>
                             </b-card-body>
                         </b-card>
@@ -84,7 +84,7 @@
                                 <p>Test Accuracy: <b>{{ testAccuracy }}</b></p>
                                 <p>Test Rand Index: <b>{{ testRandIndex }}</b></p>
                             </b-card-body>
-                            <b-card-body class="custom-card-body">
+                            <b-card-body class="custom-card">
                                 <canvas id="bar-chart"></canvas>
                             </b-card-body>
                         </b-card>
@@ -260,7 +260,7 @@
 
 <style lang="scss" scoped>
 
-    .custom-card-body {
+    .custom-card {
         position: relative;
         height: 50vh;
     }

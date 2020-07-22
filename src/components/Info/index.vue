@@ -1,5 +1,5 @@
 <template>
-    <b-container tag="section" fluid class="text-center">
+    <b-container tag="section" fluid class="text-center pb-5">
         <b-row class="pb-3">
             <b-col cols="12" class="p-0">
                 <b-jumbotron fluid>
@@ -30,7 +30,7 @@
 
         <b-row v-for="(feature, index) in features" :key="index" class="pb-5">
             <b-col offset-sm="1" sm="10" offset-lg="2" lg="8">
-                <b-card bg-variant="light" no-body class="overflow-hidden custom-card-body">
+                <b-card bg-variant="light" no-body class="overflow-hidden custom-card">
                     <b-row align-v="center" no-gutters>
                         <b-col cols="12" sm="4" :order-md="index % 2 === 0 ? 1 : 2" order="1">
                             <b-card-img-lazy :src="feature.imgSrc" :alt="feature.name"></b-card-img-lazy>
@@ -61,17 +61,22 @@
                     {
                         name: 'Feature One',
                         description: 'Some Description about feature one',
-                        imgSrc: 'https://picsum.photos/400/400/?image=20'
+                        imgSrc: require('@/assets/img/image1.jpg')
                     },
                     {
                         name: 'Feature Two',
                         description: 'Some Description about feature two',
-                        imgSrc: 'https://picsum.photos/400/400/?image=20'
+                        imgSrc: require('@/assets/img/image2.jpg')
                     },
                     {
                         name: 'Feature Three',
                         description: 'Some Description about feature three',
-                        imgSrc: 'https://picsum.photos/400/400/?image=20'
+                        imgSrc: require('@/assets/img/image3.jpg')
+                    },
+                    {
+                        name: 'Feature Four',
+                        description: 'Some Description about feature Four',
+                        imgSrc: require('@/assets/img/image4.jpg')
                     }
                 ]
             }
@@ -90,7 +95,7 @@
 
 <style lang="scss" scoped>
 
-    .custom-card-body {
+    .custom-card {
         box-shadow: 0 .125rem .25rem rgba(#000, .075);
         transition: 0.5s;
 
