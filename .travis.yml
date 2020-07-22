@@ -1,6 +1,15 @@
+branches:
+  only:
+    - master
+    - dev
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+
+cache:
+  npm: true
+
 language: node_js
 node_js:
-  - "8"
+  - node
 
 install:
   - npm install
@@ -9,7 +18,7 @@ script:
   - npm run build
 
 before_deploy:
-  - tar -czvf dist.tar dist
+  - tar -czvf dist.tar.gz dist
 
 deploy:
   provider: releases
@@ -17,4 +26,5 @@ deploy:
   file: dist.tar
   skip_cleanup: true
   on:
+    branch: master
     tags: true
