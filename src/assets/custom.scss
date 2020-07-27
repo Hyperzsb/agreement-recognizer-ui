@@ -2,6 +2,7 @@
 $enable-shadows: true;
 $enable-gradients: true;
 
+// Custom Scrollbar
 ::-moz-selection {
   background: #ced4da;
 }
@@ -20,7 +21,7 @@ $enable-gradients: true;
 }
 ::-webkit-scrollbar-track {
   border-radius: 10px;
-    background: #f8f9fa;
+  background: #f8f9fa;
 }
 
 // Include Bootstrap and BootstrapVue SCSS files
