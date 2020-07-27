@@ -5,30 +5,30 @@
                 <b-row class="mt-3 mb-3">
                     <b-col offset-sm="3" offset="2" cols="4">
                         <div class="pb-1 pt-1 text-left text-info font-weight-bolder font-size-101">
-                            相关链接
+                            Learn More
                         </div>
                         <div class="pt-1 pl-3 text-left">
-                            <b-link href="#" class="custom-link">链接1</b-link>
+                            <b-link href="#" class="custom-link">Link One</b-link>
                         </div>
                         <div class="pt-1 pl-3 text-left">
-                            <b-link href="#" class="custom-link">链接2</b-link>
+                            <b-link href="#" class="custom-link">Link Two</b-link>
                         </div>
                         <div class="pt-1 pl-3 text-left">
-                            <b-link href="#" class="custom-link">链接3</b-link>
+                            <b-link href="#" class="custom-link">Link Three</b-link>
                         </div>
                     </b-col>
                     <b-col cols="4" sm="3">
                         <div class="pb-1 pt-1 text-left text-info font-weight-bolder font-size-101">
-                            联系我们
+                            Contact Us
                         </div>
                         <div class="pt-1 pl-3 text-left">
-                            <b-link href="#" class="custom-link">链接1</b-link>
+                            <b-link href="#" class="custom-link">Link One</b-link>
                         </div>
                         <div class="pt-1 pl-3 text-left">
-                            <b-link href="#" class="custom-link">链接2</b-link>
+                            <b-link href="#" class="custom-link">Link Two</b-link>
                         </div>
                         <div class="pt-1 pl-3 text-left">
-                            <b-link href="#" class="custom-link">链接3</b-link>
+                            <b-link href="#" class="custom-link">Link Three</b-link>
                         </div>
                     </b-col>
                 </b-row>

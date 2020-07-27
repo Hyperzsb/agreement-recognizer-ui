@@ -9,17 +9,17 @@
                 <b-nav-item to="/info" replace
                             :class="{ active: this.navItem === 0 }">
                     <b class="d-inline-block pb-1 pt-3 pt-lg-1 mr-3"
-                       :class="{ 'border-bottom-2': this.navItem === 0 }">概览</b>
+                       :class="{ 'border-bottom-2': this.navItem === 0 }">Overciew</b>
                 </b-nav-item>
                 <b-nav-item to="/demo" replace
                             :class="{ active: this.navItem === 1 }">
                     <b class="d-inline-block pb-1 pt-1 mr-3"
-                       :class="{ 'border-bottom-2': this.navItem === 1 }">演示</b>
+                       :class="{ 'border-bottom-2': this.navItem === 1 }">Demo</b>
                 </b-nav-item>
                 <b-nav-item to="/about" replace
                             :class="{ active: this.navItem === 2 }">
                     <b class="d-inline-block pb-1 pt-1 mb-1 mb-lg-0 mr-3"
-                       :class="{ 'border-bottom-2': this.navItem === 2 }">关于</b>
+                       :class="{ 'border-bottom-2': this.navItem === 2 }">About</b>
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
