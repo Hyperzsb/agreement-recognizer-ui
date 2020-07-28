@@ -17,7 +17,9 @@
                             <h5>Some more description Some more description Some more description</h5>
                         </div>
                         <div class="description-nav">
-                            <button class="custom-button draw-center">Learn More</button>
+                            <button class="custom-button draw-center" @click="scroll('learn-more')">
+                                Learn More
+                            </button>
                             <button class="custom-button draw-center">View in GitHub</button>
                         </div>
                     </div>
@@ -25,22 +27,33 @@
             </b-col>
         </b-row>
 
-        <b-row v-for="(feature, index) in features" :key="index" class="pb-5">
+        <b-row class="mt-2" ref="learn-more">
             <b-col offset-sm="1" sm="10" offset-lg="2" lg="8">
-                <b-card bg-variant="light" no-body class="overflow-hidden custom-card">
-                    <b-row align-v="center" no-gutters>
-                        <b-col cols="12" sm="4" :order-md="index % 2 === 0 ? 1 : 2" order="1">
-                            <b-card-img-lazy :src="feature.imgSrc" :alt="feature.name"></b-card-img-lazy>
-                        </b-col>
-                        <b-col cols="12" sm="8" :order-md="index % 2 === 0 ? 2 : 1" order="2">
-                            <b-card-body :title="feature.name">
-                                <b-card-text>
-                                    {{ feature.description }}
-                                </b-card-text>
-                            </b-card-body>
-                        </b-col>
-                    </b-row>
-                </b-card>
+                <b-tabs content-class="mt-4" align="center"
+                        active-nav-item-class="font-weight-bold text-uppercase">
+                    <b-tab v-for="(feature, index) in features" :key="index"
+                           :title="feature.name">
+                        <b-row>
+                            <b-col cols="12">
+                                <b-card bg-variant="light" no-body class="overflow-hidden custom-card">
+                                    <b-row align-v="center" no-gutters>
+                                        <b-col cols="12" sm="4" :order-md="index % 2 === 0 ? 1 : 2" order="1">
+                                            <b-card-img-lazy :src="feature.imgSrc"
+                                                             :alt="feature.name"></b-card-img-lazy>
+                                        </b-col>
+                                        <b-col cols="12" sm="8" :order-md="index % 2 === 0 ? 2 : 1" order="2">
+                                            <b-card-body :title="feature.name">
+                                                <b-card-text>
+                                                    {{ feature.description }}
+                                                </b-card-text>
+                                            </b-card-body>
+                                        </b-col>
+                                    </b-row>
+                                </b-card>
+                            </b-col>
+                        </b-row>
+                    </b-tab>
+                </b-tabs>
             </b-col>
         </b-row>
     </b-container>
@@ -80,6 +93,12 @@
             }
         },
         methods: {
+            scroll(anchor) {
+                window.scrollTo({
+                    top: this.$refs[anchor].offsetTop - 85,
+                    behavior: "smooth"
+                })
+            },
             ...mapMutations([
                 'changeNavItem'
             ])

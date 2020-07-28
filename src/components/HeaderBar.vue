@@ -6,7 +6,7 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
-                <b-nav-item to="/info" replace
+                <b-nav-item to="/overview" replace
                             :class="{ active: this.navItem === 0 }">
                     <b class="pb-1 pt-3 pt-lg-1 mr-3 custom-button"
                        :class="{ 'custom-button-active' : this.navItem === 0 ,

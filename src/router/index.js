@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-const Info = () => import('@/components/Info');
+const Overview = () => import('@/components/Overview');
 const Demo = () => import('@/components/Demo');
 const About = () => import('@/components/About')
 
@@ -11,10 +11,10 @@ const index = new VueRouter({
     routes: [
         {
             path: '/',
-            redirect: '/info'
+            redirect: '/overview'
         }, {
-            path: '/info',
-            component: Info
+            path: '/overview',
+            component: Overview
         }, {
             path: '/demo',
             component: Demo
