@@ -3,31 +3,31 @@
         <b-row class="pt-5 pb-3">
             <b-col cols="12" class="p-3">
                 <b-row class="mt-3 mb-3">
-                    <b-col offset-sm="3" offset="2" cols="4">
-                        <div class="pb-1 pt-1 text-left text-info font-weight-bolder font-size-101">
+                    <b-col offset="2" cols="4" offset-md="3" md="3"  class="pb-1 pt-1">
+                        <div class="pb-1 text-info font-weight-bolder font-size-101">
                             Learn More
                         </div>
-                        <div class="pt-1 pl-3 text-left">
+                        <div class="pt-1">
                             <b-link href="#" class="custom-link">Link One</b-link>
                         </div>
-                        <div class="pt-1 pl-3 text-left">
+                        <div class="pt-1">
                             <b-link href="#" class="custom-link">Link Two</b-link>
                         </div>
-                        <div class="pt-1 pl-3 text-left">
+                        <div class="pt-1">
                             <b-link href="#" class="custom-link">Link Three</b-link>
                         </div>
                     </b-col>
-                    <b-col cols="4" sm="3">
-                        <div class="pb-1 pt-1 text-left text-info font-weight-bolder font-size-101">
+                    <b-col cols="4" md="3" class="pb-1 pt-1">
+                        <div class="pb-1 text-info font-weight-bolder font-size-101">
                             Contact Us
                         </div>
-                        <div class="pt-1 pl-3 text-left">
+                        <div class="pt-1">
                             <b-link href="#" class="custom-link">Link One</b-link>
                         </div>
-                        <div class="pt-1 pl-3 text-left">
+                        <div class="pt-1">
                             <b-link href="#" class="custom-link">Link Two</b-link>
                         </div>
-                        <div class="pt-1 pl-3 text-left">
+                        <div class="pt-1">
                             <b-link href="#" class="custom-link">Link Three</b-link>
                         </div>
                     </b-col>
