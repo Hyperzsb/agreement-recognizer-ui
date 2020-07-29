@@ -92,6 +92,7 @@
 
         font-weight: bold;
         color: #343a40;
+        transition: 0.25s;
 
         &:hover {
             color: #007bff;
