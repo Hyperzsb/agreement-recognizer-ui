@@ -33,8 +33,7 @@
                         active-nav-item-class="font-weight-bold text-uppercase">
                     <b-tab v-for="(feature, index) in features" :key="index"
                            :title="feature.name">
-                        <div class="custom-tab-content">
-                            <vue-markdown :source="feature.description"></vue-markdown>
+                        <div class="custom-tab-content" v-html="feature.description">
                         </div>
                     </b-tab>
                 </b-tabs>
@@ -46,7 +45,6 @@
 <script>
 
     import {mapMutations} from 'vuex'
-    import VueMarkdown from 'vue-markdown'
 
     export default {
         name: 'index',
@@ -54,27 +52,23 @@
             return {
                 features: [
                     {
-                        name: 'Feature One',
-                        description: require('@/assets/markdown/demo.md'),
-                        imgSrc: require('@/assets/img/image1.jpg')
+                        name: '作品概述',
+                        description: ''
                     },
                     {
-                        name: 'Feature Two',
-                        description: require('@/assets/markdown/demo.md'),
-                        imgSrc: require('@/assets/img/image2.jpg')
+                        name: '设计与实现',
+                        description: ''
                     },
                     {
-                        name: 'Feature Three',
-                        description: require('@/assets/markdown/demo.md'),
-                        imgSrc: require('@/assets/img/image3.jpg')
+                        name: '测试与分析',
+                        description: ''
                     },
                     {
-                        name: 'Feature Four',
-                        description: require('@/assets/markdown/demo.md'),
-                        imgSrc: require('@/assets/img/image4.jpg')
+                        name: '创新性说明',
+                        description: ''
                     }
                 ],
-                descriptionBgSrc: require('@/assets/img/background-1.jpg'),
+                descriptionBgSrc: require('@/assets/img/background-1.jpg')
             }
         },
         methods: {
@@ -90,9 +84,22 @@
         },
         created() {
             this.changeNavItem(0);
-        },
-        components: {
-            VueMarkdown
+            const MarkdownIt = require('markdown-it');
+            const markdownItClass = require('@toycode/markdown-it-class');
+            const mapping = {
+                img: 'custom-img',
+                table: 'custom-table',
+                h1: 'custom-h',
+                h2: 'custom-h',
+                h3: 'custom-h',
+                h4: 'custom-h',
+                h5: 'custom-h',
+            };
+            const markdownIt = MarkdownIt().use(markdownItClass, mapping);
+            this.features[0].description = markdownIt.render(require('@/assets/markdown/sketch.md'));
+            this.features[1].description = markdownIt.render(require('@/assets/markdown/design&implement.md'));
+            this.features[2].description = markdownIt.render(require('@/assets/markdown/test&analysis.md'));
+            this.features[3].description = markdownIt.render(require('@/assets/markdown/innovation.md'));
         }
     }
 
