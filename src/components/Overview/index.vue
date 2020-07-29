@@ -27,31 +27,15 @@
             </b-col>
         </b-row>
 
-        <b-row class="mt-2" ref="learn-more">
+        <b-row class="mt-2 mb-3 mb-md-5" ref="learn-more">
             <b-col offset-sm="1" sm="10" offset-lg="2" lg="8">
                 <b-tabs content-class="mt-4" align="center"
                         active-nav-item-class="font-weight-bold text-uppercase">
                     <b-tab v-for="(feature, index) in features" :key="index"
                            :title="feature.name">
-                        <b-row>
-                            <b-col cols="12">
-                                <b-card bg-variant="light" no-body class="overflow-hidden custom-card">
-                                    <b-row align-v="center" no-gutters>
-                                        <b-col cols="12" sm="4" :order-md="index % 2 === 0 ? 1 : 2" order="1">
-                                            <b-card-img-lazy :src="feature.imgSrc"
-                                                             :alt="feature.name"></b-card-img-lazy>
-                                        </b-col>
-                                        <b-col cols="12" sm="8" :order-md="index % 2 === 0 ? 2 : 1" order="2">
-                                            <b-card-body :title="feature.name">
-                                                <b-card-text>
-                                                    {{ feature.description }}
-                                                </b-card-text>
-                                            </b-card-body>
-                                        </b-col>
-                                    </b-row>
-                                </b-card>
-                            </b-col>
-                        </b-row>
+                        <div class="custom-tab-content">
+                            <vue-markdown :source="feature.description"></vue-markdown>
+                        </div>
                     </b-tab>
                 </b-tabs>
             </b-col>
@@ -62,6 +46,7 @@
 <script>
 
     import {mapMutations} from 'vuex'
+    import VueMarkdown from 'vue-markdown'
 
     export default {
         name: 'index',
@@ -70,26 +55,26 @@
                 features: [
                     {
                         name: 'Feature One',
-                        description: 'Some Description about feature one',
+                        description: require('@/assets/markdown/demo.md'),
                         imgSrc: require('@/assets/img/image1.jpg')
                     },
                     {
                         name: 'Feature Two',
-                        description: 'Some Description about feature two',
+                        description: require('@/assets/markdown/demo.md'),
                         imgSrc: require('@/assets/img/image2.jpg')
                     },
                     {
                         name: 'Feature Three',
-                        description: 'Some Description about feature three',
+                        description: require('@/assets/markdown/demo.md'),
                         imgSrc: require('@/assets/img/image3.jpg')
                     },
                     {
                         name: 'Feature Four',
-                        description: 'Some Description about feature Four',
+                        description: require('@/assets/markdown/demo.md'),
                         imgSrc: require('@/assets/img/image4.jpg')
                     }
                 ],
-                descriptionBgSrc: require('@/assets/img/background-1.jpg')
+                descriptionBgSrc: require('@/assets/img/background-1.jpg'),
             }
         },
         methods: {
@@ -105,6 +90,9 @@
         },
         created() {
             this.changeNavItem(0);
+        },
+        components: {
+            VueMarkdown
         }
     }
 
@@ -293,12 +281,18 @@
         transition: transform 0.5s;
     }
 
-    .custom-card {
+    .custom-tab-content {
+        height: 76vh;
+        padding: 2rem 3rem;
+        border: #dee2e6 1px solid;
+        border-radius: 5px;
+        overflow-y: scroll;
+        text-align: left;
         box-shadow: 0 .125rem .25rem rgba(#000, .075);
-        transition: 0.5s;
 
-        &:hover {
-            box-shadow: 0 1rem 3rem rgba(#000, .175);
+        @include mobile {
+            padding: 1rem 1.5rem;
+            height: 67vh;
         }
     }
 
