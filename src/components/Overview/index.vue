@@ -17,20 +17,33 @@
                             <h5>Some more description Some more description Some more description</h5>
                         </div>
                         <div class="description-nav">
-                            <button class="custom-button draw-center" @click="scroll('learn-more')">
-                                Learn More
-                            </button>
-                            <button class="custom-button draw-center">View in GitHub</button>
+                            <b-button-group>
+                                <b-dropdown right split text="Learn More" variant="success" @click="learnMore(0)">
+                                    <b-dropdown-item @click="learnMore(0)">作品概述</b-dropdown-item>
+                                    <b-dropdown-divider></b-dropdown-divider>
+                                    <b-dropdown-item @click="learnMore(1)">设计与实现</b-dropdown-item>
+                                    <b-dropdown-divider></b-dropdown-divider>
+                                    <b-dropdown-item @click="learnMore(2)">测试与分析</b-dropdown-item>
+                                    <b-dropdown-divider></b-dropdown-divider>
+                                    <b-dropdown-item @click="learnMore(3)">创新性说明</b-dropdown-item>
+                                </b-dropdown>
+                                <b-button variant="info"
+                                          href="https://github.com/IFpop/Protocol_Recognition" target="_blank">
+                                    View in GitHub
+                                    <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
+                                </b-button>
+                            </b-button-group>
                         </div>
                     </div>
                 </div>
             </b-col>
         </b-row>
 
-        <b-row class="mt-2 mb-3 mb-md-5" ref="learn-more">
+        <b-row class="mt-2 mb-3" ref="learn-more">
             <b-col offset-sm="1" sm="10" offset-lg="2" lg="8">
                 <b-tabs content-class="mt-4" align="center"
-                        active-nav-item-class="font-weight-bold text-uppercase">
+                        active-nav-item-class="font-weight-bold text-uppercase"
+                        v-model="tabIndex">
                     <b-tab v-for="(feature, index) in features" :key="index"
                            :title="feature.name">
                         <div class="custom-tab-content" v-html="feature.description">
@@ -50,6 +63,7 @@
         name: 'index',
         data() {
             return {
+                tabIndex: 0,
                 features: [
                     {
                         name: '作品概述',
@@ -72,11 +86,12 @@
             }
         },
         methods: {
-            scroll(anchor) {
+            learnMore(index) {
                 window.scrollTo({
-                    top: this.$refs[anchor].offsetTop - 85,
+                    top: this.$refs['learn-more'].offsetTop - 85,
                     behavior: "smooth"
                 })
+                this.tabIndex = index;
             },
             ...mapMutations([
                 'changeNavItem'
@@ -234,62 +249,8 @@
         }
     }
 
-    .custom-button {
-        background: none;
-        border: 0;
-        box-sizing: border-box;
-        margin: 1rem;
-        padding: 1rem;
-        box-shadow: inset 0 0 0 2px #17a2b8;
-        color: #17a2b8;
-        font-weight: bold;
-        position: relative;
-        vertical-align: middle;
-
-        @include mobile {
-            padding: 0.5rem;
-        }
-    }
-
-    .custom-button::before, .custom-button::after {
-        box-sizing: inherit;
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-
-    .draw-center::before, .draw-center::after {
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        transform-origin: center;
-    }
-
-    .draw-center::before {
-        border-top: 2px solid #28a745;
-        border-bottom: 2px solid #28a745;
-        transform: scale3d(0, 1, 1);
-    }
-
-    .draw-center::after {
-        border-left: 2px solid #28a745;
-        border-right: 2px solid #28a745;
-        transform: scale3d(1, 0, 1);
-    }
-
-    .draw-center:hover {
-        color: #28a745;
-    }
-
-    .draw-center:hover::before, .draw-center:hover::after {
-        transform: scale3d(1, 1, 1);
-        transition: transform 0.5s;
-    }
-
     .custom-tab-content {
-        height: 76vh;
+        height: 74vh;
         padding: 2rem 3rem;
         border: #dee2e6 1px solid;
         border-radius: 5px;
