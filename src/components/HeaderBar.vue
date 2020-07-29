@@ -18,11 +18,11 @@
                        :class="{ 'custom-button-active' : this.navItem === 1 ,
                                  'custom-button-inactive' : this.navItem !== 1 }">Demo</b>
                 </b-nav-item>
-                <b-nav-item to="/about" replace
-                            :class="{ active: this.navItem === 2 }">
-                    <b class="pb-1 pt-3 pt-lg-1 mr-3 custom-button"
-                       :class="{ 'custom-button-active' : this.navItem === 2 ,
-                                 'custom-button-inactive' : this.navItem !== 2 }">About</b>
+                <b-nav-item href="https://github.com/IFpop/Protocol_Recognition" target="_blank">
+                    <b class="pb-1 pt-3 pt-lg-1 mr-3 custom-button custom-button-inactive">
+                        View in GitHub
+                        <b-icon icon="box-arrow-up-right" class="ml-1"></b-icon>
+                    </b>
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>

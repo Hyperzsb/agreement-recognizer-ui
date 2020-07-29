@@ -5,7 +5,6 @@ Vue.use(VueRouter);
 
 const Overview = () => import('@/components/Overview');
 const Demo = () => import('@/components/Demo');
-const About = () => import('@/components/About')
 
 const index = new VueRouter({
     routes: [
@@ -18,9 +17,6 @@ const index = new VueRouter({
         }, {
             path: '/demo',
             component: Demo
-        }, {
-            path: '/about',
-            component: About
         }
     ]
 });
