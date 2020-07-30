@@ -12,7 +12,6 @@ Currently includes:
 TODOS:
 
 - Overview page' main description
-- Demo page's data and charts
 - Footer's links
 
 ***Continually updating...***
