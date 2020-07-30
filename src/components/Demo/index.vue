@@ -1,91 +1,39 @@
 <template>
     <b-container tag="section" fluid class="pb-3 pb-md-4">
         <b-row class="p-3 p-md-5">
-            <b-col cols="12" offset-md="1" md="6" class="mr-0 mr-md-3">
-                <b-row class="pt-4 pt-md-3  pb-4 pb-md-0">
-                    <b-col cols="12">
-                        <b-form-group
-                                label="Train Dataset: "
-                                label-for="train-dataset-select"
-                                description="Select a train dataset to show its details.">
-                            <b-form-select v-model="selectedTrainDataset" :options="trainDatasets"
-                                           id="train-dataset-select">
-                                <template v-slot:first>
-                                    <b-form-select-option :value="null" disabled>-- Please select a train dataset --
-                                    </b-form-select-option>
-                                </template>
-                            </b-form-select>
-                        </b-form-group>
-                    </b-col>
-                </b-row>
+            <b-col cols="12" md="8">
                 <b-row class="pt-3 pb-0 pb-md-3">
-                    <b-col cols="12" md="6">
+                    <b-col cols="12" md="6" class="mb-3 mb-md-0">
                         <b-card no-body bg-variant="light">
                             <template v-slot:header>
-                                <h6 class="mb-0">Train Dataset Details</h6>
+                                <h6 class="mb-0">训练中准确率变化</h6>
                             </template>
-                            <b-card-body class="pb-0">
-                                <p>Size: <b>{{ trainDatasetSize }}</b></p>
-                                <p>Total Records: <b>{{ trainDatasetTotalRecords }}</b></p>
-                            </b-card-body>
-                            <b-card-body class="custom-card">
-                                <canvas id="pie-chart"></canvas>
+                            <b-card-body class="custom-card-body">
+                                <canvas id="accuracy-chart"></canvas>
                             </b-card-body>
                         </b-card>
                     </b-col>
-                    <b-col cols="12" md="6" class="pt-5 pt-md-0 pb-3 pb-md-0">
+                    <b-col cols="12" md="6" class="mt-3 mt-md-0">
                         <b-card no-body bg-variant="light">
                             <template v-slot:header>
-                                <h6 class="mb-0">Training Result</h6>
+                                <h6 class="mb-0">训练中损失率变化</h6>
                             </template>
-                            <b-card-body class="pb-0">
-                                <p>Train Echos: <b>{{ trainEchos }}</b></p>
-                                <p>Train Accuracy: <b>{{ trainAccuracy }}</b></p>
-                            </b-card-body>
-                            <b-card-body class="custom-card">
-                                <canvas id="line-chart"></canvas>
+                            <b-card-body class="custom-card-body">
+                                <canvas id="loss-chart"></canvas>
                             </b-card-body>
                         </b-card>
                     </b-col>
                 </b-row>
             </b-col>
-            <b-col cols="12" md="4" class="ml-0 ml-md-3">
-                <b-row class="pt-4 pt-md-3  pb-4 pb-md-0">
-                    <b-col cols="12">
-                        <b-row align-v="center">
-                            <b-col cols="12" md="8">
-                                <b-form-group
-                                        label="Test Dataset: "
-                                        label-for="test-dataset-select"
-                                        description="Select a test dataset to evaluate the model.">
-                                    <b-form-select v-model="selectedTestDataset" :options="testDatasets"
-                                                   id="test-dataset-select">
-                                        <template v-slot:first>
-                                            <b-form-select-option :value="null" disabled>
-                                                -- Please select a test dataset --
-                                            </b-form-select-option>
-                                        </template>
-                                    </b-form-select>
-                                </b-form-group>
-                            </b-col>
-                            <b-col cols="12" md="4" class="pb-2">
-                                <b-button variant="success" block id="go-test-button">Test Now</b-button>
-                            </b-col>
-                        </b-row>
-                    </b-col>
-                </b-row>
+            <b-col cols="12" md="4">
                 <b-row class="pt-3 pb-3">
-                    <b-col cols="12" class="pt-0 pb-5 pb-md-0">
+                    <b-col cols="12" class="mt-3 mt-md-0">
                         <b-card no-body bg-variant="light">
                             <template v-slot:header>
-                                <h6 class="mb-0">Testing Result</h6>
+                                <h6 class="mb-0">测试结果</h6>
                             </template>
-                            <b-card-body class="pb-0">
-                                <p>Test Accuracy: <b>{{ testAccuracy }}</b></p>
-                                <p>Test Rand Index: <b>{{ testRandIndex }}</b></p>
-                            </b-card-body>
-                            <b-card-body class="custom-card">
-                                <canvas id="bar-chart"></canvas>
+                            <b-card-body class="custom-card-body">
+                                <canvas id="test-chart"></canvas>
                             </b-card-body>
                         </b-card>
                     </b-col>
@@ -105,76 +53,47 @@
         name: "index",
         data() {
             return {
-                selectedTrainDataset: null,
-                selectedTestDataset: null,
-                trainDatasetSize: '10.8Mb',
-                trainDatasetTotalRecords: 85,
-                trainDatasets: [
-                    {value: '0', text: 'Train Dataset One'},
-                    {value: '1', text: 'Train Dataset Two'},
-                    {value: '2', text: 'Train Dataset Three'},
-                    {value: '3', text: 'Train Dataset Four'}
-                ],
-                testDatasets: [
-                    {value: '0', text: 'Test Dataset One'},
-                    {value: '1', text: 'Test Dataset Two'},
-                    {value: '2', text: 'Test Dataset Three'},
-                    {value: '3', text: 'Test Dataset Four'}
-                ],
-                trainEchos: 10,
-                trainAccuracy: 97.7,
-                testAccuracy: 95.2,
-                testRandIndex: 0.765,
-                pieDemoData: {
+                trainAccuracyData: {
+                    labels: ['Iter 1', 'Iter 15', 'Iter 30', 'Iter 45', 'Iter 60',
+                        'Iter 75', 'Iter 90', 'Iter 105', 'Iter 120', 'Iter 135',
+                        'Iter 150', 'Iter 165', 'Iter 180', 'Iter 195', 'Iter 200'],
                     datasets: [{
-                        data: [10, 20, 30, 25],
-                        backgroundColor: ['rgb(246, 191, 188, 0.2)', 'rgb(0, 110, 84, 0.2)',
-                            'rgb(102, 153, 204, 0.2)', 'rgb(196, 163, 191, 0.2)'],
-                        borderColor: ['rgb(246, 191, 188, 1)', 'rgb(0, 110, 84, 1)',
-                            'rgb(102, 153, 204, 1)', 'rgb(196, 163, 191, 1)'],
-                        hoverBackgroundColor: ['rgb(246, 191, 188, 0.4)', 'rgb(0, 110, 84, 0.4)',
-                            'rgb(102, 153, 204, 0.4)', 'rgb(196, 163, 191, 0.4)']
-                    }],
-                    labels: [
-                        'TCP',
-                        'HTTP',
-                        'SMAP',
-                        'SSH'
-                    ]
-                },
-                pieDemoOptions: {
-                    maintainAspectRatio: false,
-                    title: {
-                        display: false,
-                        text: 'Doughnut Chart'
-                    }
-                },
-                lineDemoData: {
-                    labels: ['Echo 1', 'Echo 2', 'Echo 3', 'Echo 4', 'Echo 5',
-                        'Echo 6', 'Echo 7', 'Echo 8', 'Echo 9', 'Echo 10'],
-                    datasets: [{
-                        label: 'Accuracy',
-                        data: [80.2, 83.1, 85.7, 90.4, 93.6, 95.8, 97.5, 97.7, 98.1, 99.1],
+                        label: 'Echo 1',
+                        data: [8.6, 53.1, 70.3, 72.7, 87.5,
+                            89.1, 89.1, 89.8, 89.8, 90.6,
+                            96.1, 90.6, 95.3, 96.9, 98.4],
                         borderColor: 'rgb(0, 110, 84, 1)',
                         borderWidth: 2,
                         hoverBorderWidth: 5,
                         backgroundColor: 'rgb(0, 110, 84, 0.1)',
                         lineTension: 0.7
                     }, {
-                        label: 'Loss',
-                        data: [45.2, 51.4, 38.7, 47.4, 56.6, 39.8, 42.3, 47.7, 44.1, 42.6],
+                        label: 'Echo 2',
+                        data: [96.9, 95.3, 93.8, 96.1, 93.8,
+                            95.3, 96.9, 94.5, 95.3, 97.7,
+                            97.7, 96.9, 96.9, 94.5, 99.2],
                         borderColor: 'rgb(102, 153, 204, 1)',
                         borderWidth: 2,
                         hoverBorderWidth: 5,
                         backgroundColor: 'rgb(102, 153, 204, 0.1)',
                         lineTension: 0.7
+                    }, {
+                        label: 'Echo 3',
+                        data: [95.3, 97.7, 96.9, 98.4, 96.1,
+                            95.3, 97.7, 96.9, 98.4, 96.1,
+                            95.3, 97.7, 96.9, 98.4, 96.1],
+                        borderColor: 'rgb(246, 191, 188, 1)',
+                        borderWidth: 2,
+                        hoverBorderWidth: 5,
+                        backgroundColor: 'rgb(246, 191, 188, 0.1)',
+                        lineTension: 0.7
                     }]
                 },
-                lineDemoOptions: {
+                trainAccuracyOptions: {
                     maintainAspectRatio: false,
                     title: {
-                        display: false,
-                        text: 'Line Chart'
+                        display: true,
+                        text: '各轮训练各次迭代准确率'
                     },
                     scales: {
                         yAxes: [{
@@ -190,32 +109,87 @@
                         }]
                     }
                 },
-                barDemoData: {
-                    labels: ["TCP", "HTTP", "SSL", "SMAP", "SSH", "DNS", "FTP"],
+                trainLossData: {
+                    labels: ['Iter 1', 'Iter 15', 'Iter 30', 'Iter 45', 'Iter 60',
+                        'Iter 75', 'Iter 90', 'Iter 105', 'Iter 120', 'Iter 135',
+                        'Iter 150', 'Iter 165', 'Iter 180', 'Iter 195', 'Iter 200'],
                     datasets: [{
-                        label: "Dataset #1",
-                        backgroundColor: "rgba(204, 153, 204, 0.2)",
-                        borderColor: "rgba(204, 153, 204, 1)",
+                        label: 'Echo 1',
+                        data: [239.2, 144.8, 79.7, 82.7, 42.0,
+                            31.6, 30.1, 23.0, 19.6, 17.8,
+                            9.6, 20.0, 11.2, 10.9, 6.4],
+                        borderColor: 'rgb(0, 110, 84, 1)',
                         borderWidth: 2,
-                        hoverBackgroundColor: "rgba(204, 153, 204, 0.4)",
-                        data: [650, 590, 200, 810, 560, 550, 400],
+                        hoverBorderWidth: 5,
+                        backgroundColor: 'rgb(0, 110, 84, 0.1)',
+                        lineTension: 0.7
+                    }, {
+                        label: 'Echo 2',
+                        data: [8.4, 9.5, 13.7, 11.2, 10.8,
+                            9.4, 12.0, 10.9, 12.7, 6.1,
+                            5.7, 11.1, 10.5, 14.6, 6.3],
+                        borderColor: 'rgb(102, 153, 204, 1)',
+                        borderWidth: 2,
+                        hoverBorderWidth: 5,
+                        backgroundColor: 'rgb(102, 153, 204, 0.1)',
+                        lineTension: 0.7
+                    }, {
+                        label: 'Echo 3',
+                        data: [9.7, 10.9, 8.4, 7.2, 12.4,
+                            4.4, 9.5, 5.5, 5.2, 6.3,
+                            7.1, 7.3, 8.0, 6.5, 3.6],
+                        borderColor: 'rgb(246, 191, 188, 1)',
+                        borderWidth: 2,
+                        hoverBorderWidth: 5,
+                        backgroundColor: 'rgb(246, 191, 188, 0.1)',
+                        lineTension: 0.7
                     }]
                 },
-                barDemoOptions: {
+                trainLossOptions: {
                     maintainAspectRatio: false,
                     title: {
-                        display: false,
-                        text: 'Bar Chart'
+                        display: true,
+                        text: '各轮训练各次迭代损失率'
                     },
                     scales: {
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Records Num'
+                                labelString: 'Percentage (%)'
+                            },
+                            ticks: {
+                                min: 0
+                            }
+                        }]
+                    }
+                },
+                testData: {
+                    labels: ['TCP', 'UDP', 'DNS', 'SMB', 'MDNS', 'SSH', 'VNC', 'STUN', 'HTTP', 'NBNS'],
+                    datasets: [{
+                        label: '准确率',
+                        data: [88.29, 100.0, 98.57, 100.0, 100.0, 97.86, 97.57, 99.71, 88.57, 99.86],
+                        backgroundColor: "rgba(204, 153, 204, 0.2)",
+                        borderColor: "rgba(204, 153, 204, 1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(204, 153, 204, 0.4)"
+                    }]
+                },
+                testOptions: {
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: '各协议识别准确率'
+                    },
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Percentage (%)'
                             },
                             ticks: {
                                 min: 0,
-                                stepSize: 100
+                                max: 100,
+                                stepSize: 10
                             },
                             stacked: true,
                             gridLines: {
@@ -241,17 +215,17 @@
             this.changeNavItem(1);
         },
         mounted() {
-            Chart.Doughnut('pie-chart', {
-                data: this.pieDemoData,
-                options: this.pieDemoOptions
-            })
-            Chart.Line('line-chart', {
-                data: this.lineDemoData,
-                options: this.lineDemoOptions
-            })
-            Chart.Bar('bar-chart', {
-                data: this.barDemoData,
-                options: this.barDemoOptions
+            Chart.Line('accuracy-chart', {
+                data: this.trainAccuracyData,
+                options: this.trainAccuracyOptions
+            });
+            Chart.Line('loss-chart', {
+                data: this.trainLossData,
+                options: this.trainLossOptions
+            });
+            Chart.Bar('test-chart', {
+                data: this.testData,
+                options: this.testOptions
             });
         }
     }
@@ -260,7 +234,7 @@
 
 <style lang="scss" scoped>
 
-    .custom-card {
+    .custom-card-body {
         position: relative;
         height: 50vh;
     }
