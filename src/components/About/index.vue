@@ -31,70 +31,70 @@
 
 <script>
 
-    import {mapMutations} from "vuex";
+import {mapMutations} from "vuex";
 
-    export default {
-        name: "index",
-        data() {
-            return {
-                teammates: [{
-                    imgSrc: require('@/assets/img/image1.jpg'),
-                    name: 'Person One',
-                    title: 'Job one',
-                    info: 'Som Information'
-                }, {
-                    imgSrc: require('@/assets/img/image2.jpg'),
-                    name: 'Person Two',
-                    title: 'Job Two',
-                    info: 'Som Information'
-                }, {
-                    imgSrc: require('@/assets/img/image3.jpg'),
-                    name: 'Person Three',
-                    title: 'Job Three',
-                    info: 'Som Information'
-                }, {
-                    imgSrc: require('@/assets/img/image4.jpg'),
-                    name: 'Person Four',
-                    title: 'Job Four',
-                    info: 'Som Information'
-                }]
-            }
-        },
-        methods: {
-            ...mapMutations([
-                'changeNavItem'
-            ])
-        },
-        created() {
-            this.changeNavItem(2);
+export default {
+    name: "index",
+    data() {
+        return {
+            teammates: [{
+                imgSrc: require('@/assets/img/image1.jpg'),
+                name: 'Person One',
+                title: 'Job one',
+                info: 'Som Information'
+            }, {
+                imgSrc: require('@/assets/img/image2.jpg'),
+                name: 'Person Two',
+                title: 'Job Two',
+                info: 'Som Information'
+            }, {
+                imgSrc: require('@/assets/img/image3.jpg'),
+                name: 'Person Three',
+                title: 'Job Three',
+                info: 'Som Information'
+            }, {
+                imgSrc: require('@/assets/img/image4.jpg'),
+                name: 'Person Four',
+                title: 'Job Four',
+                info: 'Som Information'
+            }]
         }
+    },
+    methods: {
+        ...mapMutations([
+            'changeNavItem'
+        ])
+    },
+    created() {
+        this.changeNavItem(2);
     }
+}
 
 </script>
 
 <style lang="scss" scoped>
 
-    .headline {
-        display: inline-block;
-        text-decoration-line: underline;
-        text-shadow: 0.5rem 0.5rem 0.3rem rgba(#000000, 0.3);
-    }
+.headline {
+    display: inline-block;
+    text-decoration-line: underline;
+    text-shadow: 0.5rem 0.5rem 0.3rem rgba(#000000, 0.3);
+}
 
-    .sub-headline {
-        display: inline-block;
-        margin-left: 30px;
-        margin-right: 30px;
-        color: #adb5bd;
-    }
+.sub-headline {
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    color: #adb5bd;
+}
 
-    .custom-card {
-        text-align: center;
-        box-shadow: 0 .125rem .25rem rgba(#000, .075);
-        transition: 0.5s;
+.custom-card {
+    text-align: center;
+    box-shadow: 0 .125rem .25rem rgba(#000, .075);
+    transition: 0.5s;
 
-        &:hover {
-            box-shadow: 0 1rem 3rem rgba(#000, .175);
-        }
+    &:hover {
+        box-shadow: 0 1rem 3rem rgba(#000, .175);
     }
+}
 
 </style>

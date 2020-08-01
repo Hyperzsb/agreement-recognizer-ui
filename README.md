@@ -9,9 +9,4 @@ Currently includes:
 - Overview Page
 - Demo Page
 
-TODOS:
-
-- Overview page' main description
-- Footer's links
-
 ***Continually updating...***
